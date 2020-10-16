@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="pliki\Makefile" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="pliki\Zad1.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
