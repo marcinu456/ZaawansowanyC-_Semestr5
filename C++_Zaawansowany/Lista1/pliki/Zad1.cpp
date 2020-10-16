@@ -25,6 +25,7 @@ public:
 	using value_type = T;
 	T& operator[](size_t el) { return Tablica[el]; }
 	const T& operator[](size_t el) const { return Tablica[el]; }
+
 };
 
 template <typename T2, size_t Size, typename T>
@@ -65,12 +66,24 @@ int main()
 	//Zad3
 	Wektor<int, 3> A = {1,3,3};
 
-	A.Tablica[1]=5;
-	std::cout << A.Tablica[1];
+	//Zad4
+	std::vector<int> v= {1,2,3};
 
-	std::vector<int> v= { 2,2,2 };
+	
+	try 
+	{
+		if ((v.size() != A.Tablica.size()) || v.size() == 0 || A.Tablica.size() == 0)
+		{
+			throw "Error";
+		}
+		std::cout << v * A << '\n';
+	}
+	catch (...)
+	{
+		std::cout << "Niezgadzajaca sie lub zerowa ilosc skladowych\n";
+	}
+	
 
-	std::cout << v * A;
 
 	return 0;
 }
