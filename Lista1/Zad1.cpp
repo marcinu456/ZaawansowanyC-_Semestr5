@@ -35,7 +35,7 @@ public:
 	T& operator[](size_t Size) { return Tablica[Size]; }
 	const T& operator[](size_t Size) const { return Tablica[Size]; }
 
-	int size() const{
+	size_t size() const{
 		return Size;
 	}
 };
@@ -54,8 +54,7 @@ auto operator* (const T VectL, const T2 VectP)
 		}
 		else {
 			int wynik = 0;
-			//auto wynik = { VectL[0] * VectP[0] };
-			for (int i = 0; i < VectL.size(); i++)
+			for (size_t i = 0; i < VectL.size(); i++)
 			{
 				wynik += VectL[i] * VectP[i];
 			}
@@ -119,6 +118,6 @@ int main()
 	std::vector<int> v= {1,2,3};
 
 	std::cout << A * v << '\n';
-
+	std::cout << v * A << '\n';
 	return 0;
 }
