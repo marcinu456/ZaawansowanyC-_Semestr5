@@ -4,9 +4,9 @@
 #include <vector>
 
 template <typename T, typename T2>
-inline auto add1(T par1, T2 par2)
+inline auto add1(T part1, T2 part2)
 {
-	return par1 + par2;
+	return part1 + part2;
 }
 
 template <typename T, typename T2, typename T3>
@@ -29,7 +29,7 @@ public:
 };
 
 template <typename T2, size_t Size, typename T>
-T2 operator* (const T& VectL, const Wektor<T2,Size>& VectP)
+T2 operator* (std::vector<T> const& VectL, const Wektor<T2,Size>& VectP)
 {
 	T2 wynikmnog = 0;
 	for (size_t i=0;i<Size;i++)
@@ -40,7 +40,7 @@ T2 operator* (const T& VectL, const Wektor<T2,Size>& VectP)
 }
 
 template <typename T2, size_t Size, typename T>
-T2 operator* (const Wektor<T2, Size>& VectL, const T& VectP)
+T2 operator* (const Wektor<T2, Size>& VectL, std::vector<T> const& VectP)
 {
 	return VectP * VectL;
 }
@@ -50,6 +50,8 @@ T2 operator* (const Wektor<T2, Size>& VectL, const T& VectP)
 int main()
 {
 	//Zad1
+	std::cout << "Zadanie 1\n";
+
 	std::cout << add1<int>(5, 8) << "\n";
 	int f1 = 3;
 	float f2 = 4.5;
@@ -59,24 +61,39 @@ int main()
 	std::cout << add1<std::string>(s1, s2) << "\n";
 
 	//Zad2
+	std::cout << "\nZadanie 2\n";
+
 	std::cout << add2(5, 8, [](int a, int b) {return a + b; }) << "\n";
+
 	std::string s3 = "test", s4 = "lipot";
 	std::cout << add2(s3, s4, [](std::string a, std::string b) {return a + b; }) << "\n";
 
 	//Zad3
+	std::cout << "\nZadanie 3\n";
+
 	Wektor<int, 3> A = {1,3,3};
 
+
+	std::cout << A.Tablica[1] << '\n';
+
+	A.Tablica[1] = 1;
+
+	std::cout << A.Tablica[1] << '\n';
+
 	//Zad4
+	std::cout << "\nZadanie 4\n";
+
 	std::vector<int> v= {1,2,3};
 
 	
 	try 
 	{
+		
 		if ((v.size() != A.Tablica.size()) || v.size() == 0 || A.Tablica.size() == 0)
 		{
 			throw "Error";
 		}
-		std::cout << v * A << '\n';
+		std::cout << A * v << '\n';
 	}
 	catch (...)
 	{
