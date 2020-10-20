@@ -23,7 +23,7 @@ public:
 	{
 		std::cout << "Child: FunctA \n";
 	}
-	void FunctB()
+	virtual void FunctB() override
 	{
 		std::cout << "Child: FunctB \n";
 	}
