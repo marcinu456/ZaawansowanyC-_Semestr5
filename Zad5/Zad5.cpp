@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 template <typename T, typename T2>
 inline auto add1(const T& part1, const T2& part2)
@@ -34,10 +33,7 @@ int main() {
 	std::string s1 = "test", s2 = "lipot";
 	std::cout << add1<std::string>(s1, s2) << "\n";
 
-	int p1 = 3;
-	double p2 = 4.5;
-
-	std::cout << add1<const int, const double>(&p1, &p2) << "\n";
+	std::cout << add1<const int, const float>(&f1, &f2) << "\n";
 
 	const char str1[5] = "test";
 	const char str2[6] = "lipot";

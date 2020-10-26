@@ -9,6 +9,10 @@ auto add(T pierwszy, Argumenty... reszta) {
 }
 
 int main() {
+	//Zad7
+
+	std::cout << "test " << add(1, 1.0, 1.0f) << "\n";
+	
 	std::cout << "liczby " << add(8, 12, 5, 6.1f, 5.5) << "\n";
 
 	std::string s1 = "test", s2 = "lipot", s3 = "twix";
