@@ -29,6 +29,9 @@ constexpr long double Hypercube(const T& a, const int& N)
 
 int main() 
 {
+// PB: Sprawdzenie czy liczy się w czasie kompilacji
+static_assert(Hypercube(5, 5) == 3125);
+
 	//Zad 6	
 	std::cout << "objetosc hiperszesnianu o  a=3 i n=3 = " << Hypercube(3, 3) << "\n";
 

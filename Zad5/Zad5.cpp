@@ -20,6 +20,8 @@ inline auto add1(const char* part1, const char* part2)
 	return std::string(part1) + part2;
 }
 
+// PB: W zadaniu chodzi o to, że wywołania funkcji powinny działać bez jawnego podawania typów argumentów szablonów.
+// PB: Zadanie nie jest rozwiązane poprawnie.
 
 int main() {
 	//Zad5

@@ -4,12 +4,14 @@
 #include <vector>
 
 template <typename T, typename T2>
+// PB: Niepotrzebne kopiowanie - argumenty powinny być przekazane przez stałe referencje
 inline auto add1(T part1, T2 part2)
 {
 	return part1 + part2;
 }
 
 template <typename T, typename T2, typename T3>
+// PB: Niepotrzebne kopiowanie - argumenty powinny być przekazane przez stałe referencje
 inline auto add2(T a, T2 b, T3 zwrotdonadawcy)
 {
 	return zwrotdonadawcy(a,b);
@@ -32,6 +34,7 @@ public:
 	operator bool() const { return (Size != 0); }
 	bool operator!() const { return (Size == 0); }
 
+// PB: Brak drugiego operatora indeksowania - do pobierania składowych z niemodyfikowalnych obiektów
 	T& operator[](size_t Size) { return Tablica[Size]; }
 	const T& operator[](size_t Size) const { return Tablica[Size]; }
 
@@ -41,11 +44,13 @@ public:
 };
 
 template <typename T, typename T2>
+// PB: Niepotrzebne kopiowanie - argumenty powinny być przekazane przez stałe referencje
 auto operator* (const T VectL, const T2 VectP)
 {
 	
 	try {
 		if (VectL.size() != VectP.size()) {
+// PB: Do zgłaszania błędów proszę wykorzystywać klasy wyjątków - może być np. std::runtime_error
 			throw (0);
 		}
 		else if (VectP.size() == 0 || VectL.size() == 0)
@@ -53,6 +58,7 @@ auto operator* (const T VectL, const T2 VectP)
 			throw (1);
 		}
 		else {
+// PB: Dlaczego wynik jest typu int niezależnie od typu danych?
 			int wynik = 0;
 			for (size_t i = 0; i < VectL.size(); i++)
 			{
@@ -62,6 +68,8 @@ auto operator* (const T VectL, const T2 VectP)
 			
 		}
 	}
+// PB: Łapanie wyjątków tutaj i zwracanie zera jest błędem.
+// PB: Jeśli nie można policzyć iloczynu to nie znaczy że jest on równy zero.
 	catch (int error) {
 		if (error == 0)
 		{
