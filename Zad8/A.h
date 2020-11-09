@@ -8,55 +8,48 @@ class A
 {
 
 private:
-	char* bezsensu{ nullptr };
+	char* data{ nullptr };
 	size_t dl_tablicy{ 0 };
 
 public:
-	A(const std::string& name)  {
+	A(const std::string& name) {
 		std::cout << "constructor" << std::endl;
-		dl_tablicy = name.size() + 1;//.length() + 1;
-		bezsensu = new char[dl_tablicy];
-		std::copy(name.begin(), name.end(), bezsensu);
-		bezsensu[dl_tablicy - 1] = '\0';// name.begin();
-		//strcpy_s(bezsensu, dl_tablicy, name.c_str());
+		dl_tablicy = name.size() + 1;
+		data = new char[dl_tablicy];
+		std::copy(name.begin(), name.end(), data);
+		data[dl_tablicy - 1] = '\0';
+
 	}
 	//copy const
-	A(const A& a){
+	A(const A& a) {
 
 		std::cout << "copy constructor" << std::endl;
 		dl_tablicy = a.dl_tablicy;
-		bezsensu = new char[dl_tablicy];
-		memcpy(bezsensu, a.bezsensu, dl_tablicy);
-		//strcpy_s(bezsensu, a.dl_tablicy, a.bezsensu);
+		data = new char[dl_tablicy];
+		memcpy(data, a.data, dl_tablicy);
 	}
 
 	//move const
-	A( A&& a) noexcept { 
+	A(A&& a) noexcept {
 		std::cout << "move constructor" << std::endl;
-		bezsensu = a.bezsensu;
+		data = a.data;
 		dl_tablicy = a.dl_tablicy;
-		
-		a.bezsensu = nullptr;
+
+		a.data = nullptr;
 		a.dl_tablicy = 0;
 	}
 
-	
+
 	const char* Get() const {
-		return bezsensu;
+		return data;
 	}
 
-	~A();
+	~A() {
+		std::cout << "Destruktorb" << std::endl;
+		if (!data) return;
+		else delete[] data;
+		std::cout << "Destruktore" << std::endl;
+	}
 
 
 };
-
-
-
-A::~A()
-{
-	std::cout << "Destruktorb" << std::endl;
-	if (!bezsensu) return;
-	else delete[] bezsensu;
-	std::cout << "Destruktore" << std::endl;
-	//delete bezsensu;
-}

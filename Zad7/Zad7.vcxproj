@@ -24,6 +24,7 @@
     <ProjectGuid>{6ad49368-4911-4ea7-89c9-ec5a93914a0a}</ProjectGuid>
     <RootNamespace>Zad7</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Zad07</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
