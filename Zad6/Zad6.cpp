@@ -14,7 +14,7 @@ constexpr long double Hypercube(const T& a, const int& N)
 		{
 			return 1;
 		}
-		int wynik = a;
+		long double wynik = a;
 		for (int i = 1; i < N; i++)
 		{
 			wynik *= a;
@@ -35,7 +35,7 @@ static_assert(Hypercube(5, 5) == 3125);
 	//Zad 6	
 	std::cout << "objetosc hiperszesnianu o  a=3 i n=3 = " << Hypercube(3, 3) << "\n";
 
-	std::cout << "objetosc hiperszesnianu o  a=6 i n=36 = " << Hypercube(6, 6) << "\n";
+	std::cout << "objetosc hiperszesnianu o  a=6 i n=36 = " << Hypercube(6, 36) << "\n";
 
 	return 0;
 }
