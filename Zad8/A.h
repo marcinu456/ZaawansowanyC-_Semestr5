@@ -17,7 +17,7 @@ public:
 		dl_tablicy = name.size() + 1;
 		data = new char[dl_tablicy];
 		std::copy(name.begin(), name.end(), data);
-		data[dl_tablicy - 1] = '\0';
+		
 
 	}
 	//copy const
