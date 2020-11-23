@@ -34,12 +34,12 @@ int main()
 
 • Czy czas raportowany funkcj¹ clock() nadaje siê do oceny przyspieszenia wersji
 równoleg³ej programu? Dlaczego?
-	Nie poniewa¿ zwraca on liczbê cykli procesora, który za ka¿dym razem jest taki sam lub zbli¿ony
+	Nie poniewa¿ zwraca on liczbê cykli procesora, który za ka¿dym razem jest taki sam lub zbli¿ony oraz pokazujê czas jakby by³ wykonywany tylko na jednym w¹tku
 
 • Jaki fragment informacji wyœwietlanych komend¹ time (konkretnie: /usr/bin/time)
 zawiera informacjê o liczbie u¿ytych w¹tków, a który - o rzeczywistym czasie
 wykonywania siê programu?
-	elapsed zawiera informacjê o czasiê rzeczywistym, pagefaults zawiera informacjê o u¿ytuch w¹tkach
+	elapsed zawiera informacjê o czasiê rzeczywistym, podzielenie czasu u¿ytkownika przez elapsed da nam liczbê w¹tków lub przy %CPU po podzieleniu przez 100
 	
 
 */
