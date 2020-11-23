@@ -18,7 +18,7 @@ int main()
 	b.Komunikaty wchodz¹ sobie w drogê, wynika to z tego, ¿e w¹tki wykonuj¹ pracê równolegle, niezale¿nie od siebiê i jeden w¹tek mo¿e skoñczyæ pracê zanim inny zd¹¿y to zrobiæ
 
 2)
-	#pragma omp single: Dany blok programu wykonujê siê tylko na jednym, niekoniecznie g³ównym, w¹tku, wykorzystujê tylko jeden dostêpny w¹tek
-	#pragma omp master: Dany blok programu zawsze wykonujê siê na w¹tku g³ównym, przydatne jeœli chcemy ¿eby dany blok programu by³ wykonywany przez w¹tek g³ówny
-	#pragma omp critical: wyniki programu nie wchodz¹ w siebie, s¹ wykonywane przez jedem w¹tek w danym czasie kolejnoœæ wykonywania nadal jest losowa, wyd³u¿a czas dzia³ania programu
+	#pragma omp single: Dany blok programu wykonujê siê tylko na jednym, niekoniecznie g³ównym, w¹tku, wykorzystujê tylko jeden dostêpny w¹tek, ma na koñcu bariere- oczekiwanie a¿ wszystkie w¹tki osi¹gn¹ bariere
+	#pragma omp master: Dany blok programu zawsze wykonujê siê na w¹tku g³ównym, przydatne jeœli chcemy ¿eby dany blok programu by³ wykonywany przez w¹tek g³ówny,nie ma na koñcu bariery
+	#pragma omp critical: wyniki programu nie wchodz¹ w siebie, s¹ wykonywane przez jedem w¹tek w danym czasie kolejnoœæ wykonywania nadal jest losowa, wyd³u¿a czas dzia³ania programu s³u¿y do unikania wyœcigu danych
 */
