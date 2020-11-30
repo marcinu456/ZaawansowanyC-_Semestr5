@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zad11", "Zad11\Zad11.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zad12", "Zad12\Zad12.vcxproj", "{1B154623-9A5C-42FB-B31D-3D5E6DF7777B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zad13", "zad13\zad13.vcxproj", "{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -111,6 +113,14 @@ Global
 		{1B154623-9A5C-42FB-B31D-3D5E6DF7777B}.Release|x64.Build.0 = Release|x64
 		{1B154623-9A5C-42FB-B31D-3D5E6DF7777B}.Release|x86.ActiveCfg = Release|Win32
 		{1B154623-9A5C-42FB-B31D-3D5E6DF7777B}.Release|x86.Build.0 = Release|Win32
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Debug|x64.ActiveCfg = Debug|x64
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Debug|x64.Build.0 = Debug|x64
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Debug|x86.ActiveCfg = Debug|Win32
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Debug|x86.Build.0 = Debug|Win32
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Release|x64.ActiveCfg = Release|x64
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Release|x64.Build.0 = Release|x64
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Release|x86.ActiveCfg = Release|Win32
+		{30D7D60C-C2CF-467F-93E1-87FC1C60CE27}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
