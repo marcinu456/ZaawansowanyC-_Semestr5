@@ -1,5 +1,5 @@
-main: main.o
-	g++ -o main main.o
+main.exe: main.obj
+	link /DEBUG /OUT:main.exe main.obj
 
-main.o: main.cpp
-	g++ -std=c++17 -c -g -Wall -pedantic -Werror -o main.o main.cpp
+main.obj: main.cpp
+	cl /std:c++17 /openmp /EHsc /c /Zi /W4 /WX /Fo:main.obj main.cpp
