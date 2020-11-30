@@ -3,14 +3,23 @@
 #include <mutex>
 #include <string>
 
-void printThreadId(std::string str ) {
-
+std::mutex g_i_mutex;
+int threadId()
+{
     static std::mutex m;
     static int number = 0;
 
-    thread_local int localID = [&]() {std::lock_guard<std::mutex>lk(m); return ++number; }();
+    thread_local int localID = [&]() {std::lock_guard<std::mutex>lk(m); return number++; }();
 
-    std::cout << str << number << "\n";  
+    return localID;
+}
+
+
+
+void printThreadId(std::string str ) {
+
+    const std::lock_guard<std::mutex> lock(g_i_mutex);
+    std::cout << str << threadId() << "\n";
 }
 
 void Assynv(std::launch policy, int Calls)
@@ -28,8 +37,10 @@ void Assynv(std::launch policy, int Calls)
 int main()
 {
 
-    std::async(Assynv, std::launch::async, 10);
+    std::async(Assynv, std::launch::async, 3);
+
+
     std::cout << "std::launch::async oraz std::launch::deferred;\n";
-    std::async(std::launch::async, Assynv, std::launch::deferred, 10);
+    std::async(std::launch::async, Assynv, std::launch::deferred, 3);
     return 0;
 }
