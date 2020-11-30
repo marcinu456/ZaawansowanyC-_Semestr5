@@ -3,7 +3,7 @@
 #include <mutex>
 #include <string>
 
-
+ std::mutex g_i_mutex;
 int threadId()
 {
     static std::mutex m;
@@ -17,8 +17,8 @@ int threadId()
 
 
 void printThreadId(std::string str ) {
-    std::mutex g_i_mutex;
-    const std::lock_guard<std::mutex> lock(g_i_mutex);
+   
+    std::lock_guard<std::mutex> lock(g_i_mutex);
     std::cout << str << threadId() << "\n";
 }
 
@@ -33,14 +33,14 @@ void Assynv(std::launch policy, int Calls)
     }
     
 }
-
+ 
 
 
 int main()
 {
-    Assynv(std::launch::async, 3);
-//    std::async(Assynv, std::launch::async, 3);
-    std::cout << "std::launch::async oraz std::launch::deferred;\n";
-    auto d = std::async(std::launch::async, Assynv, std::launch::deferred, 3); 
+    //Assynv(std::launch::async, 3);
+    auto x =  std::async(std::launch::async, Assynv, std::launch::async, 3);
+   
+//   auto d = std::async(std::launch::async, Assynv, std::launch::deferred, 3); 
     return 0;
 }
