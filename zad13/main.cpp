@@ -6,12 +6,11 @@
  std::mutex g_i_mutex;
 int threadId()
 {
-    static std::mutex m;
     static int number = 0;
 
-    thread_local int localID = [&]() {std::lock_guard<std::mutex>lk(m); return number++; }();
+    thread_local int localID = [&]() {return number++; }();
 
-    return localID;
+    return localID; 
 }
 
 
@@ -39,8 +38,8 @@ void Assynv(std::launch policy, int Calls)
 int main()
 {
     //Assynv(std::launch::async, 3);
-    auto x =  std::async(std::launch::async, Assynv, std::launch::async, 3);
+    auto a=  std::async(std::launch::async, Assynv, std::launch::async, 10);
    
-//   auto d = std::async(std::launch::async, Assynv, std::launch::deferred, 3); 
+ // auto d = std::async(std::launch::async, Assynv, std::launch::deferred, 3); 
     return 0;
 }
