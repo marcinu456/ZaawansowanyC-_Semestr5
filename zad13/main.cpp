@@ -3,17 +3,16 @@
 #include <mutex>
 #include <string>
 
- std::mutex g_i_mutex;
+std::mutex g_i_mutex;
 int threadId()
 {
+    static std::mutex s_mutex;
     static int number = 0;
 
-    thread_local int localID = [&]() {return number++; }();
+    thread_local int localID = [&]() {std::lock_guard<std::mutex> lock(s_mutex); return number++; }();
 
     return localID; 
 }
-
-
 
 void printThreadId(std::string str ) {
    
@@ -23,23 +22,33 @@ void printThreadId(std::string str ) {
 
 void Assynv(std::launch policy, int Calls)
 {
-    if (Calls > 0)
-    {
-        auto currentasscync = std::async(policy, Assynv, policy, --Calls);
+    std::future<void>* currentasscync = new std::future<void> [Calls];
 
-        currentasscync.get();
-        printThreadId("Current thread id: ");
+    for (int i = 0;i < Calls;i++)
+    {
+       currentasscync[i] = std::async(policy, printThreadId, "Current thread id: ");
     }
-    
+
+    for (int i = 0; i < Calls; i++)
+    {
+        currentasscync[i].get();
+    }
+
+    delete[] currentasscync;
 }
  
 
-
 int main()
 {
-    //Assynv(std::launch::async, 3);
-    auto a=  std::async(std::launch::async, Assynv, std::launch::async, 10);
-   
- // auto d = std::async(std::launch::async, Assynv, std::launch::deferred, 3); 
+    std::cout << "std::launch::async\n";
+    int  call = 3;
+    Assynv(std::launch::async, call);
+  
+    std::cout << "std::launch::deferred\n";
+ 
+    Assynv(std::launch::deferred, call);
+  
     return 0;
 }
+
+
