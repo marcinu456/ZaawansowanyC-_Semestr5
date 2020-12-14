@@ -6,10 +6,10 @@
 std::mutex g_i_mutex;
 int threadId()
 {
-    static std::mutex s_mutex;
+    //static std::mutex s_mutex;
     static int number = 0;
 
-    thread_local int localID = [&]() {std::lock_guard<std::mutex> lock(s_mutex); return number++; }();
+    thread_local int localID = number++;// [&]() {std::lock_guard<std::mutex> lock(s_mutex); return number++; }();
 
     return localID; 
 }
