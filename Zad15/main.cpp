@@ -11,11 +11,11 @@ class Synchro {
     std::vector<std::function<double()>> taskList;
     std::vector<double> results;
     std::vector<std::thread> threads;
-    void compute();
+    void calculi();
     std::mutex taskMutex;
     std::mutex resultMutex;
     std::mutex is_ready_mutex;
-    bool is_ready= false;
+    bool is_ready = false;
     std::mutex mutex;
     std::condition_variable cv;
 public:
@@ -29,7 +29,7 @@ Synchro::Synchro(int cores)
 {
     threads.reserve(cores);
     for (int i = 0; i < cores; i++) {
-        threads.push_back(std::thread(&Synchro::compute,this));
+        threads.push_back(std::thread(&Synchro::calculi, this));
     }
 }
 void Synchro::add_task(std::function<double()> task) {
@@ -59,12 +59,12 @@ void Synchro::stop() {
             threads[i].join();
         }
         threads.clear();
-         
+
     }
 }
 
 
-void Synchro::compute() {
+void Synchro::calculi() {
 
     std::unique_lock<std::mutex> mlock(mutex);
     while (!is_ready || taskList.size() > 0) {
@@ -103,7 +103,7 @@ int main() {
         synchro.add_task(test);
     }
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(4));
     std::cout << "average: " << synchro.average() << "\n"; 
     synchro.stop();
 
