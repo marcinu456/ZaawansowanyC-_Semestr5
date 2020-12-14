@@ -29,7 +29,7 @@ Synchro::Synchro(int cores)
 {
     threads.reserve(cores);
     for (int i = 0; i < cores; i++) {
-        threads.emplace_back(std::thread(&Synchro::compute,this));
+        threads.push_back(std::thread(&Synchro::compute,this));
     }
 }
 void Synchro::add_task(std::function<double()> task) {
@@ -103,8 +103,8 @@ int main() {
         synchro.add_task(test);
     }
 
-    std::this_thread::sleep_for(std::chrono::seconds(5));
-    std::cout << "the average after 5 second numbers is: " << synchro.average() << "\n";
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::cout << "average: " << synchro.average() << "\n"; 
     synchro.stop();
 
 
