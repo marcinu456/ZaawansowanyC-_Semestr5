@@ -20,6 +20,7 @@ class Synchro {
     std::condition_variable cv;
 public:
     Synchro(int cores);
+    ~Synchro();
     void add_task(std::function<double()>);
     double average();
     void stop();
@@ -29,7 +30,7 @@ Synchro::Synchro(int cores)
 {
     threads.reserve(cores);
     for (int i = 0; i < cores; i++) {
-        threads.push_back(std::thread(&Synchro::calculi, this));
+        threads.push_back(std::thread(&Synchro::calculi, std::move(this)));
     }
 }
 void Synchro::add_task(std::function<double()> task) {
@@ -77,7 +78,8 @@ void Synchro::calculi() {
            double result = task();
            std::unique_lock<std::mutex> rlock(resultMutex);
            results.push_back(result);
-           rlock.unlock();
+           rlock.unlock(); 
+
         }
         else {
             cv.wait(mlock);
@@ -85,6 +87,12 @@ void Synchro::calculi() {
     }
     mlock.unlock();
 }
+
+Synchro::~Synchro()
+{
+    stop();
+}
+
 
 double test() {
     static double i = -1;
