@@ -20,6 +20,7 @@ class Synchro
 public:
 	Synchro(size_t threads_count)
 	{
+		//threads.reserve(threads_count);
 		for (size_t i = 0; i < threads_count; i++)
 		{
 			threads.push_back(std::thread(&Synchro::calculis, this));
@@ -39,6 +40,7 @@ public:
 	{
 		std::lock_guard<std::mutex> rlock(resultMutex);
 		double sumOfResults = std::accumulate(results.begin(), results.end(), decltype(results)::value_type(0));
+		//std::cout << "results count: " << results.size() << std::endl;
 		
 		return (sumOfResults / results.size());
 	}
@@ -87,10 +89,11 @@ private:
 			std::function<double()>  task = getTask();
 			if (task)
 			{
-				
+				auto rtask = task();
 				std::unique_lock<std::mutex> rlock(resultMutex);
-				results.push_back(task());
-				rlock.unlock();
+				results.push_back(rtask);
+				//std::cout << std::this_thread::get_id() << " id\n";
+				//rlock.unlock();
 			}
 		}
 
