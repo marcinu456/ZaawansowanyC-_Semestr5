@@ -51,6 +51,8 @@ private:
 			if (volumeleft == 0) {
 				fuelTank.erase(fuelTank.begin());
 				std::cout << fuelTank.size() << " FuelTank left \n";
+				if(fuelTank.size()!=0)
+				volumeleft = fuelTank[0]->GetFuel(fuelExpendingVolume);
 			}
 			flock.unlock();
 
